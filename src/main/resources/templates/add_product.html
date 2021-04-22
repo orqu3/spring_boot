@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>addProduct</title>
+    <link rel="stylesheet" href="/app/styles.css">
+</head>
+<body>
+<div class="header container">
+    <h1>To add a new product, complete the following fields:</h1>
+</div>
+<div class="form container">
+    <form method="post" th:action="@{'/add_product'}">
+        <h3>Product id</h3>
+        <input class="input" type="text" placeholder="Enter the product id here"><br>
+        <h3>Product name</h3>
+        <input class="input" type="text" placeholder="Enter the product name here"><br>
+        <h3>Product cost</h3>
+        <input class="input" type="text" placeholder="Enter the product cost here"><br>
+        <input class="submit_button" type="submit" value="Submit">
+    </form>
+</div>
+<br>
+<h4 class="container">Back to main: <a href="/app">Main</a></h4>
+</body>
+</html>

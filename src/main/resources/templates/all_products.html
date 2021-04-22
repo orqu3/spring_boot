@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>all_products</title>
+    <link rel="stylesheet" href="/app/styles.css">
+</head>
+<body>
+<div class="container">
+    <h1>All products list:</h1>
+    <table class="container" th:if="${all_products.size() > 0}">
+        <thead class="thead">
+        <tr>
+            <td><b>Id</b></td>
+            <td><b>Title</b></td>
+            <td><b>Cost</b></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${all_products}">
+            <td th:text="${product.getId()}"></td>
+            <td th:text="${product.getTitle()}"></td>
+            <td th:text="${product.getCost()}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+<h4 class="container">Back to main: <a href="/app">Main</a></h4>
+</body>
+</html>
