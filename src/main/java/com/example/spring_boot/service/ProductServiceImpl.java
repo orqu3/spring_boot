@@ -11,20 +11,26 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
-    private final ProductRepository repo;
+    private final ProductRepository productRepository;
+
 
     @Override
-    public void add_product(Product product) {
-        repo.add_product(product);
+    public Product findById(Long id) {
+        return productRepository.findById(id);
     }
 
     @Override
-    public List<Product> getAllProducts() {
-        return repo.getAllProducts();
+    public List<Product> findAll() {
+        return productRepository.findAll();
     }
 
     @Override
-    public Product getProductById(int id) {
-        return repo.getProductById(id);
+    public void deleteById(Long id) {
+        productRepository.deleteById(id);
+    }
+
+    @Override
+    public Product saveOrUpdate(Product product) {
+        return productRepository.saveOrUpdate(product);
     }
 }

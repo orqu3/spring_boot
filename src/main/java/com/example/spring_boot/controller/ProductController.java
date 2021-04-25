@@ -2,7 +2,6 @@ package com.example.spring_boot.controller;
 
 import com.example.spring_boot.model.entity.Product;
 import com.example.spring_boot.service.ProductService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,10 +9,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-@RequiredArgsConstructor
 public class ProductController {
 
     private final ProductService productService;
+
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
 
     @GetMapping("/")
     public String index() {
@@ -22,7 +24,7 @@ public class ProductController {
 
     @GetMapping("/all_products")
     public String getProductList(Model model) {
-        model.addAttribute("all_products", productService.getAllProducts());
+        model.addAttribute("all_products", productService.findAll());
         return "all_products";
     }
 
@@ -33,7 +35,7 @@ public class ProductController {
 
     @PostMapping("/add_product")
     public String addNewProduct(@ModelAttribute Product product) {
-        productService.add_product(product);
+        productService.saveOrUpdate(product);
         return "redirect:/";
     }
 }
