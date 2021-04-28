@@ -1,50 +1,53 @@
 package com.example.spring_boot.model.repository;
 
 import com.example.spring_boot.model.entity.Product;
-import org.springframework.stereotype.Component;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import javax.persistence.EntityManager;
+import javax.persistence.Table;
 import java.util.List;
 
-@Component
+@Repository
+@RequiredArgsConstructor
+@Table(name = "products")
 public class ProductRepositoryImpl implements ProductRepository {
 
-    private final List<Product> repo = new ArrayList<>();
+    private final EntityManager entityManager;
 
-    {
-        Product egg = new Product();
-        egg.setId(1);
-        egg.setTitle("Egg");
-        egg.setCost(10);
-        repo.add(egg);
-
-        Product milk = new Product();
-        milk.setId(2);
-        milk.setTitle("Milk");
-        milk.setCost(20);
-        repo.add(milk);
-
-        Product bread = new Product();
-        bread.setId(3);
-        bread.setTitle("Bread");
-        bread.setCost(15);
-        repo.add(bread);
-
+    @Override
+    public Product findById(Long id) {
+        return entityManager.find(Product.class, id);
     }
 
     @Override
-    public Product getProductById(int id) {
-        return repo.get(id);
+    public List<Product> findAll() {
+        List<Product> products = entityManager
+                .createQuery("SELECT p FROM Product p")
+                .getResultList();
+        return products;
     }
 
     @Override
-    public List<Product> getAllProducts() {
-        return Collections.unmodifiableList(repo);
+    public void deleteById(Long id) {
+        entityManager.getTransaction().begin();
+        entityManager.remove(findById(id));
+        entityManager.getTransaction().commit();
     }
 
     @Override
-    public void add_product(Product product) {
-        repo.add(product);
+    public Product saveOrUpdate(Product product) {
+        entityManager.getTransaction().begin();
+        entityManager.persist(product);
+        entityManager.getTransaction().commit();
+        entityManager.getTransaction().begin();
+        findById(product.getId());
+        entityManager.getTransaction().commit();
+        product.setTitle(product.getTitle());
+        product.setPrice(product.getPrice());
+        entityManager.getTransaction().begin();
+        entityManager.merge(product);
+        entityManager.getTransaction().commit();
+        return product;
     }
 }
