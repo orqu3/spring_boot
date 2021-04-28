@@ -1,6 +1,7 @@
-package com.example.spring_boot.model.repository;
+package com.example.spring_boot.dao;
 
-import com.example.spring_boot.model.entity.Product;
+import com.example.spring_boot.entity.Product;
+import com.example.spring_boot.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -10,22 +11,22 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-@Table(name = "products")
-public class ProductRepositoryImpl implements ProductRepository {
+@Table(name = "users")
+public class UserDaoImpl implements UserDao {
 
     private final EntityManager entityManager;
 
     @Override
-    public Product findById(Long id) {
-        return entityManager.find(Product.class, id);
+    public User findById(Long id) {
+        return entityManager.find(User.class, id);
     }
 
     @Override
-    public List<Product> findAll() {
-        List<Product> products = entityManager
-                .createQuery("SELECT p FROM Product p")
+    public List<User> findAll() {
+        List<User> users = entityManager
+                .createQuery("SELECT u FROM User u")
                 .getResultList();
-        return products;
+        return users;
     }
 
     @Override
@@ -36,18 +37,24 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public Product saveOrUpdate(Product product) {
+    public User saveOrUpdate(User user) {
         entityManager.getTransaction().begin();
-        entityManager.persist(product);
+        entityManager.persist(user);
         entityManager.getTransaction().commit();
         entityManager.getTransaction().begin();
-        findById(product.getId());
+        findById(user.getId());
         entityManager.getTransaction().commit();
-        product.setTitle(product.getTitle());
-        product.setPrice(product.getPrice());
+        user.setName(user.getName());
         entityManager.getTransaction().begin();
-        entityManager.merge(product);
+        entityManager.merge(user);
         entityManager.getTransaction().commit();
-        return product;
+        return user;
+    }
+
+    @Override
+    public List<Product> findUserProducts(Long id) {
+        User user = findById(id);
+        return user.getProducts();
     }
 }
+
