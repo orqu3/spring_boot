@@ -1,7 +1,7 @@
 package com.example.spring_boot.service;
 
+import com.example.spring_boot.dao.ProductDao;
 import com.example.spring_boot.entity.Product;
-import com.example.spring_boot.dao.ProductDAO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +13,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
-    private final ProductDAO productDAO;
+    private final ProductDao productDAO;
 
 
     @Override
