@@ -5,9 +5,9 @@ import com.example.spring_boot.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Controller
@@ -18,6 +18,11 @@ public class ProductController {
     @GetMapping("/")
     public String index() {
         return "index";
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Product> getProductById(@PathVariable Long id) {
+        return productService.findById(id);
     }
 
     @GetMapping("/all_products")
@@ -33,7 +38,13 @@ public class ProductController {
 
     @PostMapping("/add_product")
     public String addNewProduct(@ModelAttribute Product product) {
-        productService.saveOrUpdate(product);
+        productService.save(product);
+        return "redirect:/";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteById(Model model, @PathVariable Long id) {
+        model.addAttribute("delete", productService.deleteById(id));
         return "redirect:/";
     }
 }
