@@ -1,6 +1,6 @@
 package com.example.spring_boot.service;
 
-import com.example.spring_boot.model.entity.Product;
+import com.example.spring_boot.entity.Product;
 
 import java.util.List;
 import java.util.Optional;

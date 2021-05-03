@@ -1,4 +1,4 @@
-package com.example.spring_boot.model.entity;
+package com.example.spring_boot.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

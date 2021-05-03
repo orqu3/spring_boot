@@ -1,7 +1,7 @@
 package com.example.spring_boot.service;
 
-import com.example.spring_boot.model.entity.Product;
-import com.example.spring_boot.model.dao.ProductDAO;
+import com.example.spring_boot.entity.Product;
+import com.example.spring_boot.dao.ProductDAO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

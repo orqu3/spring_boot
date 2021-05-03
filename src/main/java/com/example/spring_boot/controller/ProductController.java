@@ -1,6 +1,6 @@
 package com.example.spring_boot.controller;
 
-import com.example.spring_boot.model.entity.Product;
+import com.example.spring_boot.entity.Product;
 import com.example.spring_boot.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

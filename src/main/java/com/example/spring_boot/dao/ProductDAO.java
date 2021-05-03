@@ -1,6 +1,6 @@
-package com.example.spring_boot.model.dao;
+package com.example.spring_boot.dao;
 
-import com.example.spring_boot.model.entity.Product;
+import com.example.spring_boot.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
