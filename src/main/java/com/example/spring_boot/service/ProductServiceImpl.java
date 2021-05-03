@@ -1,7 +1,7 @@
 package com.example.spring_boot.service;
 
-import com.example.spring_boot.model.entity.Product;
-import com.example.spring_boot.model.repository.ProductRepository;
+import com.example.spring_boot.entity.Product;
+import com.example.spring_boot.dao.ProductDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,26 +11,26 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
-    private final ProductRepository productRepository;
+    private final ProductDao productDao;
 
 
     @Override
     public Product findById(Long id) {
-        return productRepository.findById(id);
+        return productDao.findById(id);
     }
 
     @Override
     public List<Product> findAll() {
-        return productRepository.findAll();
+        return productDao.findAll();
     }
 
     @Override
     public void deleteById(Long id) {
-        productRepository.deleteById(id);
+        productDao.deleteById(id);
     }
 
     @Override
     public Product saveOrUpdate(Product product) {
-        return productRepository.saveOrUpdate(product);
+        return productDao.saveOrUpdate(product);
     }
 }

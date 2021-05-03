@@ -13,6 +13,7 @@
         <property name="show_sql">true</property>
         <property name="hbm2ddl.auto">none</property>
         <property name="current_session_context_class">thread</property>
-        <mapping class="com.example.spring_boot.model.entity.Product"/>
+        <mapping class="com.example.spring_boot.entity.Product"/>
+        <mapping class="com.example.spring_boot.entity.User"/>
     </session-factory>
 </hibernate-configuration>
