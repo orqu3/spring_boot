@@ -40,7 +40,6 @@ public class UserDaoImpl implements UserDao {
     public User saveOrUpdate(User user) {
         entityManager.getTransaction().begin();
         entityManager.persist(user);
-        findById(user.getId());
         user.setName(user.getName());
         entityManager.merge(user);
         entityManager.getTransaction().commit();

@@ -40,13 +40,8 @@ public class ProductDaoImpl implements ProductDao {
     public Product saveOrUpdate(Product product) {
         entityManager.getTransaction().begin();
         entityManager.persist(product);
-        entityManager.getTransaction().commit();
-        entityManager.getTransaction().begin();
-        findById(product.getId());
-        entityManager.getTransaction().commit();
         product.setTitle(product.getTitle());
         product.setPrice(product.getPrice());
-        entityManager.getTransaction().begin();
         entityManager.merge(product);
         entityManager.getTransaction().commit();
         return product;
