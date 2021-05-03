@@ -1,17 +1,14 @@
-package com.example.spring_boot.service;
+package com.example.spring_boot.dao;
 
 import com.example.spring_boot.entity.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface ProductService {
+public interface ProductDAO extends JpaRepository<Product, Long> {
 
-    Optional<Product> findById(Long id);
-    List<Product> findAll();
-    Object deleteById(Long id);
-    Product save(Product product);
     List<Product> findProductsByPriceIsGreaterThan(int minPrice);
     List<Product> findProductsByPriceIsLessThan(int maxPrice);
     List<Product> findProductsByPriceIsBetween(int minPrice, int maxPrice);
+
 }
