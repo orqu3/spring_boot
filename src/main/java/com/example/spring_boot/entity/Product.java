@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Getter
@@ -24,6 +25,15 @@ public class Product {
 
     @Column(name = "price")
     private int price;
+
+    @ManyToMany
+    @JoinTable(
+            name = "products_users",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private List<User> users;
+
 
     public Product(String title, int price) {
         this.title = title;
