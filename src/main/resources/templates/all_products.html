@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>all_products</title>
@@ -14,6 +14,7 @@
             <td><b>Id</b></td>
             <td><b>Title</b></td>
             <td><b>Cost</b></td>
+            <td><b>Action</b></td>
         </tr>
         </thead>
         <tbody>
@@ -21,6 +22,9 @@
             <td th:text="${product.getId()}"></td>
             <td th:text="${product.getTitle()}"></td>
             <td th:text="${product.getPrice()}"></td>
+            <td>
+                <a th:href="@{/delete/{id}(id=${product.id})}" class="delete_button">Delete</a>
+            </td>
         </tr>
         </tbody>
     </table>

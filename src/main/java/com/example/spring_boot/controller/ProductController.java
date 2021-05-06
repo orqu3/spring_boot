@@ -7,10 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @RequiredArgsConstructor
 @Controller
+@RequestMapping
 public class ProductController {
 
     private final ProductService productService;
@@ -20,11 +19,6 @@ public class ProductController {
         return "index";
     }
 
-    @GetMapping("/{id}")
-    public Optional<Product> getProductById(@PathVariable Long id) {
-        return productService.findById(id);
-    }
-
     @GetMapping("/all_products")
     public String getProductList(Model model) {
         model.addAttribute("all_products", productService.findAll());
@@ -32,19 +26,21 @@ public class ProductController {
     }
 
     @GetMapping("/add_product")
-    public String getAddNewProductForm() {
+    public String getAddNewProductForm(Model model) {
+        Product product = new Product();
+        model.addAttribute("product", product);
         return "add_product";
     }
 
     @PostMapping("/add_product")
-    public String addNewProduct(@ModelAttribute Product product) {
+    public String addNewProduct(@ModelAttribute("product") Product product) {
         productService.save(product);
         return "redirect:/";
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteById(Model model, @PathVariable Long id) {
-        model.addAttribute("delete", productService.deleteById(id));
+    public String deleteById(@PathVariable(value = "id") Long id) {
+        this.productService.deleteById(id);
         return "redirect:/";
     }
 }

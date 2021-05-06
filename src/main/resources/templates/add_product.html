@@ -10,11 +10,11 @@
     <h1>To add a new product, complete the following fields:</h1>
 </div>
 <div class="form container">
-    <form method="post" th:action="@{'/add_product'}">
+    <form action="#" method="post" th:action="@{'/add_product'}" th:object="${product}">
         <h3>Product name</h3>
-        <input class="input" type="text" placeholder="Enter the product name here"><br>
+        <input type="text" th:field="*{title}" class="input" placeholder="Enter the product name here"><br>
         <h3>Product cost</h3>
-        <input class="input" type="text" placeholder="Enter the product cost here"><br>
+        <input type="text" th:field="*{price}" class="input" placeholder="Enter the product cost here"><br>
         <input class="submit_button" type="submit" value="Submit">
     </form>
 </div>
