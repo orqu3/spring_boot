@@ -3,6 +3,8 @@ package com.example.spring_boot.controller;
 import com.example.spring_boot.entity.Product;
 import com.example.spring_boot.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +21,18 @@ public class ProductController {
         return "index";
     }
 
-    @GetMapping("/all_products")
-    public String getProductList(Model model) {
-        model.addAttribute("all_products", productService.findAll());
+    @GetMapping({"/all_products", "/all_products/{pageId}"})
+    public String getProductList(Model model, @PathVariable(required = false) Integer pageId) {
+        if(pageId == null) {
+            pageId = 1;
+        }
+        PageRequest pageRequest = PageRequest.of(pageId - 1, 10);
+        final Page<Product> products = productService.findAll(pageRequest);
+        model.addAttribute("products", products.getContent());
+        final int pageNumber = products.getPageable().getPageNumber();
+        model.addAttribute("currentPage", pageNumber + 1);
+        model.addAttribute("previousPage", products.getPageable().hasPrevious() ? pageNumber : null);
+        model.addAttribute("nextPage", products.getTotalPages() > pageNumber + 1 ? pageNumber + 2 : null);
         return "all_products";
     }
 

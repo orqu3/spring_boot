@@ -3,6 +3,8 @@ package com.example.spring_boot.service;
 import com.example.spring_boot.dao.ProductDAO;
 import com.example.spring_boot.entity.Product;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,8 +26,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Product> findAll() {
-        return productDAO.findAll();
+    public Page<Product> findAll(PageRequest pageRequest) {
+        return productDAO.findAll(pageRequest);
     }
 
     @Override

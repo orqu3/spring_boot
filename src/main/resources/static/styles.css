@@ -42,6 +42,12 @@ body {
     flex: border-box;
 }
 
+.paging {
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
 table {
     border: 0;
 }
