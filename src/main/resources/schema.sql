@@ -1,6 +1,8 @@
 CREATE SCHEMA IF NOT EXISTS `spring_boot_db`;
 
-CREATE TABLE IF NOT EXISTS `spring_boot_db`.`products`
+DROP TABLE IF EXISTS `spring_boot_db`.`products`;
+
+CREATE TABLE `spring_boot_db`.`products`
 (
     `id`    BIGINT       NOT NULL AUTO_INCREMENT,
     `title` VARCHAR(128) NOT NULL UNIQUE,
@@ -8,14 +10,18 @@ CREATE TABLE IF NOT EXISTS `spring_boot_db`.`products`
     PRIMARY KEY (`id`)
 );
 
-CREATE TABLE IF NOT EXISTS `spring_boot_db`.`users`
+DROP TABLE IF EXISTS `spring_boot_db`.`users`;
+
+CREATE TABLE `spring_boot_db`.`users`
 (
     `id`   INT          NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(128) NULL,
     PRIMARY KEY (`id`)
 );
 
-CREATE TABLE IF NOT EXISTS `spring_boot_db`.`products_users`
+DROP TABLE IF EXISTS `spring_boot_db`.`products_users`;
+
+CREATE TABLE `spring_boot_db`.`products_users`
 (
     `product_id` BIGINT NOT NULL,
     `user_id`    BIGINT NOT NULL,
