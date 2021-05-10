@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface ProductDAO extends JpaRepository<Product, Long> {
     List<Product> findProductsByPriceIsGreaterThan(int minPrice);
+
     List<Product> findProductsByPriceIsLessThan(int maxPrice);
+
     List<Product> findProductsByPriceIsBetween(int minPrice, int maxPrice);
 }

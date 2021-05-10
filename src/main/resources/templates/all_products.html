@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>all_products</title>
@@ -8,22 +8,33 @@
 <body>
 <div class="container">
     <h1>All products list:</h1>
-    <table class="container" th:if="${all_products.size() > 0}">
+    <table class="container" th:if="${products.size() > 0}">
         <thead class="thead">
         <tr>
             <td><b>Id</b></td>
             <td><b>Title</b></td>
             <td><b>Cost</b></td>
+            <td><b>Action</b></td>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="product : ${all_products}">
+        <tr th:each="product : ${products}">
             <td th:text="${product.getId()}"></td>
             <td th:text="${product.getTitle()}"></td>
             <td th:text="${product.getPrice()}"></td>
+            <td>
+                <a th:href="@{/delete/{id}(id=${product.id})}" class="delete_button">Delete</a>
+            </td>
         </tr>
         </tbody>
     </table>
+</div>
+<div class="paging">
+    <a th:if = "${previousPage != null}" th:href="@{/all_products/{pageId} (pageId = ${previousPage})}"
+       th:text="'<' + ${previousPage}"/>
+    <span th:text="${currentPage}"/>
+    <a th:if = "${nextPage != null}" th:href="@{/all_products/{pageId} (pageId = ${nextPage})}"
+       th:text="${nextPage} + '>'"/>
 </div>
 <br>
 <h4 class="container">Back to main: <a href="/app">Main</a></h4>
