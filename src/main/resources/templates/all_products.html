@@ -23,6 +23,7 @@
             <td th:text="${product.getTitle()}"></td>
             <td th:text="${product.getPrice()}"></td>
             <td>
+                <a class="update_button">Update</a>
                 <a th:href="@{/delete/{id}(id=${product.id})}" class="delete_button">Delete</a>
             </td>
         </tr>
@@ -30,10 +31,10 @@
     </table>
 </div>
 <div class="paging">
-    <a th:if = "${previousPage != null}" th:href="@{/all_products/{pageId} (pageId = ${previousPage})}"
+    <a th:if="${previousPage != null}" th:href="@{/all_products/{pageId} (pageId = ${previousPage})}"
        th:text="'<' + ${previousPage}"/>
     <span th:text="${currentPage}"/>
-    <a th:if = "${nextPage != null}" th:href="@{/all_products/{pageId} (pageId = ${nextPage})}"
+    <a th:if="${nextPage != null}" th:href="@{/all_products/{pageId} (pageId = ${nextPage})}"
        th:text="${nextPage} + '>'"/>
 </div>
 <br>
