@@ -23,7 +23,7 @@ public class ProductController {
 
     @GetMapping({"/all_products", "/all_products/{pageId}"})
     public String getProductList(Model model, @PathVariable(required = false) Integer pageId) {
-        if(pageId == null) {
+        if (pageId == null) {
             pageId = 1;
         }
         PageRequest pageRequest = PageRequest.of(pageId - 1, 10);

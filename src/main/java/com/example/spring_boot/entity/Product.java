@@ -1,16 +1,12 @@
 package com.example.spring_boot.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -44,6 +40,10 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product [id = " + id + ", title = " + title + ", price = " + price + "]";
+        return "Product " +
+                "[id = " + id +
+                ", title = " + title +
+                ", price = " + price +
+                "]";
     }
 }
