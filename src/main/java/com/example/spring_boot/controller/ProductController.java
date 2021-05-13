@@ -1,7 +1,6 @@
 package com.example.spring_boot.controller;
 
 import com.example.spring_boot.entity.Product;
-import com.example.spring_boot.service.CartServiceImpl;
 import com.example.spring_boot.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 public class ProductController {
 
     private final ProductService productService;
-    private final CartServiceImpl cartServiceImpl;
 
     @GetMapping("/")
     public String index() {
@@ -25,7 +23,7 @@ public class ProductController {
 
     @GetMapping({"/all_products", "/all_products/{pageId}"})
     public String getProductList(Model model, @PathVariable(required = false) Integer pageId) {
-        if(pageId == null) {
+        if (pageId == null) {
             pageId = 1;
         }
         PageRequest pageRequest = PageRequest.of(pageId - 1, 10);
@@ -35,7 +33,6 @@ public class ProductController {
         model.addAttribute("currentPage", pageNumber + 1);
         model.addAttribute("previousPage", products.getPageable().hasPrevious() ? pageNumber : null);
         model.addAttribute("nextPage", products.getTotalPages() > pageNumber + 1 ? pageNumber + 2 : null);
-        model.addAttribute("cart", cartServiceImpl);
         return "all_products";
     }
 

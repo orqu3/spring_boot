@@ -1,7 +1,8 @@
 package com.example.spring_boot.controller;
 
+import com.example.spring_boot.controller.dto.CartItemsDto;
 import com.example.spring_boot.service.Cart;
-import com.example.spring_boot.service.CartService;
+import com.example.spring_boot.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,20 +12,22 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/carts")
 public class CartRestController {
-    private final CartService cartService;
+    private final ProductService productService;
+    private final Cart cart;
+
+
+    @GetMapping("/all")
+    public List<CartItemsDto> getCart() {
+        return cart.getCarts();
+    }
 
     @PostMapping("/add")
-    public Cart addToCart(@RequestBody Cart cart) {
-        return cartService.addToCart(cart);
+    public void addProductToCart(@RequestParam Long id) {
+        cart.addProductToCart(productService.findById(id).get());
     }
 
-    @GetMapping("/viewAll")
-    public List<Cart> viewAllItems(){
-        return cartService.viewAllItems();
-    }
-
-    @DeleteMapping("/deleteAll")
-    public void deleteAllItems() {
-        cartService.deleteAllItems();
+    @DeleteMapping("/{id}")
+    public void removeProductFromCart(@PathVariable Long id) {
+        cart.removeProductFromCart(productService.findById(id).get());
     }
 }
