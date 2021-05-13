@@ -1,7 +1,7 @@
 package com.example.spring_boot.controller.mapper;
 
 import com.example.spring_boot.controller.dto.CartDto;
-import com.example.spring_boot.entity.Cart;
+import com.example.spring_boot.service.Cart;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -11,7 +11,7 @@ public class CartConverter {
         CartDto cartDto = new CartDto();
         cartDto.setId(cart.getId());
         cartDto.setProduct(cart.getProduct());
-        cartDto.setQuantity(cart.getQuantity());
+        cartDto.setProductQuantity(cart.getQuantity());
         return cartDto;
     }
 }

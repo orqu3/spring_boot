@@ -1,10 +1,9 @@
 package com.example.spring_boot.service;
 
 import com.example.spring_boot.dao.CartDAO;
-import com.example.spring_boot.entity.Cart;
-import com.example.spring_boot.entity.Product;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,18 +18,28 @@ public class CartServiceImpl implements CartService {
 
     private final CartDAO cartDAO;
 
+    @Lookup
     @Transactional
+    @Override
+    public Cart getNewCart() {
+        return null;
+    }
+
+    @Transactional
+    @Override
     public Cart addToCart(Cart cart) {
         return cartDAO.save(cart);
     }
 
     @Transactional
-        public List<Cart> viewAllItems() {
+    @Override
+    public List<Cart> viewAllItems() {
         return cartDAO.findAll();
     }
 
     @Transactional
-    public void removeAllItems() {
+    @Override
+    public void deleteAllItems() {
         cartDAO.deleteAll();
     }
 }

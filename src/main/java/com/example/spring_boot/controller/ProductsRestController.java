@@ -3,7 +3,6 @@ package com.example.spring_boot.controller;
 import com.example.spring_boot.controller.dto.ProductDto;
 import com.example.spring_boot.controller.mapper.ProductConverter;
 import com.example.spring_boot.service.ProductService;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
