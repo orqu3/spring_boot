@@ -17,7 +17,6 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductDAO productDAO;
 
-
     @Override
     @Transactional(readOnly = true)
     public Optional<Product> findById(Long id) {
@@ -28,6 +27,12 @@ public class ProductServiceImpl implements ProductService {
     @Transactional(readOnly = true)
     public Page<Product> findAll(PageRequest pageRequest) {
         return productDAO.findAll(pageRequest);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Product> findAll() {
+        return productDAO.findAll();
     }
 
     @Override

@@ -13,6 +13,8 @@ public interface ProductService {
 
     Page<Product> findAll(PageRequest pageRequest);
 
+    List<Product> findAll();
+
     void deleteById(Long id);
 
     Product save(Product product);
