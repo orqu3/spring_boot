@@ -21,10 +21,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.23'
-//    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.4.5'
-//    implementation group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity5', version: '3.0.4.RELEASE'
-//    implementation group: 'org.mapstruct', name: 'mapstruct', version: '1.4.2.Final'
-//    annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.4.5'
+    implementation group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity5', version: '3.0.4.RELEASE'
 }
 
 test {

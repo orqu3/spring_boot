@@ -20,10 +20,10 @@ VALUES ('garlic', '115'),
        ('onion', '30'),
        ('seasoning', '45');
 
-INSERT INTO `spring_boot_db`.`users` (`name`)
-VALUES ('John'),
-       ('Bob'),
-       ('Anna');
+INSERT INTO `spring_boot_db`.`users` (`username`, 'password', 'enabled')
+VALUES ('John', 12345, 1),
+       ('Bob', 12345, 1),
+       ('Anna', 12345, 1);
 
 INSERT INTO products_users (product_id, user_id)
 VALUES (1, 1),
@@ -32,3 +32,8 @@ VALUES (1, 1),
        (3, 2),
        (1, 3),
        (2, 3);
+
+INSERT INTO `spring_boot_db`.`authorities` (authority, user_id)
+VALUES ('ADMIN', 1),
+       ('MANAGER', 2),
+       ('USER', 3);

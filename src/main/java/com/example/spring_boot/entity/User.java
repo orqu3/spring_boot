@@ -1,9 +1,7 @@
 package com.example.spring_boot.entity;
 
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
@@ -18,8 +16,14 @@ public class User {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "username")
+    private String username;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "enabled")
+    private Short enabled;
 
     @ManyToMany
     @JoinTable(
@@ -29,12 +33,20 @@ public class User {
     )
     private List<Product> products;
 
-    public User(String name) {
-        this.name = name;
+    @ManyToMany
+    @JoinTable(
+            name = "authorities",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "authority")
+    )
+    private List<Authority> authorities;
+
+    public User(String username) {
+        this.username = username;
     }
 
     @Override
     public String toString() {
-        return "User [id = " + id + ", name = " + name + "]";
+        return "User [id = " + id + ", name = " + username + "]";
     }
 }

@@ -13,23 +13,21 @@
         <tr>
             <td><b>Id</b></td>
             <td><b>Name</b></td>
-<!--            <td><b>Products</b></td>-->
         </tr>
         </thead>
         <tbody>
         <tr th:each="user : ${users}">
             <td th:text="${user.getId()}"></td>
-            <td th:text="${user.getName()}"></td>
-<!--            <td th:text="${user.getProducts()}"></td>-->
+            <td th:text="${user.getUsername()}"></td>
         </tr>
         </tbody>
     </table>
 </div>
 <div class="paging">
-    <a th:if = "${previousPage != null}" th:href="@{/all_users/{pageId} (pageId = ${previousPage})}"
+    <a th:if="${previousPage != null}" th:href="@{/all_users/{pageId} (pageId = ${previousPage})}"
        th:text="'<' + ${previousPage}"/>
     <span th:text="${currentPage}"/>
-    <a th:if = "${nextPage != null}" th:href="@{/all_users/{pageId} (pageId = ${nextPage})}"
+    <a th:if="${nextPage != null}" th:href="@{/all_users/{pageId} (pageId = ${nextPage})}"
        th:text="${nextPage} + '>'"/>
 </div>
 <br>

@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @Component
 @Data
 @Scope(BeanDefinition.SCOPE_SINGLETON)
-public class Cart {
+public class CartServiceImpl implements CartService {
     private Map<Product, Integer> products;
 
     @PostConstruct
