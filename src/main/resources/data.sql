@@ -33,7 +33,12 @@ VALUES (1, 1),
        (1, 3),
        (2, 3);
 
-INSERT INTO `spring_boot_db`.`authorities` (authority, user_id)
-VALUES ('ADMIN', 1),
-       ('MANAGER', 2),
-       ('USER', 3);
+INSERT INTO `spring_boot_db`.`roles` (id, name)
+VALUES (1, 'ADMIN'),
+       (2, 'MANAGER'),
+       (3, 'USER');
+
+INSERT INTO `spring_boot_db`.`roles_users` (role_id, user_id)
+VALUES (1, 1),
+       (2, 2),
+       (3, 3);

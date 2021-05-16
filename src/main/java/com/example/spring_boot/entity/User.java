@@ -35,11 +35,11 @@ public class User {
 
     @ManyToMany
     @JoinTable(
-            name = "authorities",
+            name = "roles_users",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "authority")
+            inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    private List<Authority> authorities;
+    private List<Role> roles;
 
     public User(String username) {
         this.username = username;
