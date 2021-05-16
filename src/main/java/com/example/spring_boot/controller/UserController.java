@@ -5,6 +5,7 @@ import com.example.spring_boot.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ public class UserController {
 
     private final UserService userService;
 
+//    @Secured({"ADMIN"})
     @GetMapping({"/all_users", "/all_users/{pageId}"})
     public String getUserList(Model model, @PathVariable(required = false) Integer pageId) {
         if (pageId == null) {
