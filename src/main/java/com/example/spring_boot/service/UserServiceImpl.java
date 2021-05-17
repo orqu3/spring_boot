@@ -1,5 +1,6 @@
 package com.example.spring_boot.service;
 
+import com.example.spring_boot.dao.RoleDAO;
 import com.example.spring_boot.dao.UserDAO;
 import com.example.spring_boot.entity.Role;
 import com.example.spring_boot.entity.User;
@@ -24,6 +25,7 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     private final UserDAO userDAO;
+    private final RoleDAO roleDAO;
 
     @Override
     @Transactional(readOnly = true)
@@ -40,7 +42,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(String.format("User '%s' not found", username)));
+        User user = userDAO.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(String.format("User '%s' not found", username)));
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));
     }
 
