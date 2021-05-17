@@ -34,9 +34,9 @@ VALUES (1, 1),
        (2, 3);
 
 INSERT INTO `spring_boot_db`.`roles` (id, name)
-VALUES (1, 'ADMIN'),
-       (2, 'MANAGER'),
-       (3, 'USER');
+VALUES (1, 'ROLE_ADMIN'),
+       (2, 'ROLE_MANAGER'),
+       (3, 'ROLE_USER');
 
 INSERT INTO `spring_boot_db`.`roles_users` (role_id, user_id)
 VALUES (1, 1),
