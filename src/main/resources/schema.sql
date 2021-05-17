@@ -14,7 +14,7 @@ DROP TABLE IF EXISTS `spring_boot_db`.`users`;
 
 CREATE TABLE `spring_boot_db`.`users`
 (
-    `id`       INT          NOT NULL AUTO_INCREMENT,
+    `id`       BIGINT          NOT NULL AUTO_INCREMENT,
     `username` VARCHAR(128) NULL,
     `password` VARCHAR(100) NOT NULL,
     `enabled`  TINYINT(1)   NOT NULL,
