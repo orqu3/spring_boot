@@ -19,7 +19,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @Secured({"ADMIN"})
+    @Secured({"ROLE_ADMIN"})
     @GetMapping({"/all_users", "/all_users/{pageId}"})
     public String getUserList(Model model, @PathVariable(required = false) Integer pageId) {
         if (pageId == null) {
