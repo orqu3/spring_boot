@@ -1,7 +1,7 @@
 package com.example.spring_boot.controller;
 
 import com.example.spring_boot.controller.dto.CartItemsDto;
-import com.example.spring_boot.service.CartServiceImpl;
+import com.example.spring_boot.service.CartService;
 import com.example.spring_boot.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/api/v1/carts")
 public class CartRestController {
     private final ProductService productService;
-    private final CartServiceImpl cartService;
+    private final CartService cartService;
 
 
     @GetMapping("/all")
