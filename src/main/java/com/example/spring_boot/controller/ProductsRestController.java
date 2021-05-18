@@ -2,7 +2,9 @@ package com.example.spring_boot.controller;
 
 import com.example.spring_boot.controller.dto.ProductDto;
 import com.example.spring_boot.controller.mapper.ProductConverter;
+import com.example.spring_boot.entity.Product;
 import com.example.spring_boot.service.ProductService;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,14 +37,14 @@ public class ProductsRestController {
         productService.deleteById(id);
     }
 
-//    @PostMapping
-//    public ProductDto addStudent(@RequestBody ProductDto productDto) {
-//        productDto.setId(0L);
-//        return productService.save(productDto);
-//    }
-//
-//    @PutMapping(consumes = {MediaType.APPLICATION_JSON_VALUE})
-//    public ProductDto updateStudent(@RequestBody ProductDto productDto) {
-//        return productService.save(productDto);
-//    }
+    @PostMapping
+    public ProductDto addProduct(@RequestBody Product product) {
+        product.setId(0L);
+        return productConverter.fromProduct(productService.save(product));
+    }
+
+    @PutMapping(consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public ProductDto updateProduct(@RequestBody Product product) {
+        return productConverter.fromProduct(productService.save(product));
+    }
 }
