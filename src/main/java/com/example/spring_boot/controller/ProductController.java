@@ -5,6 +5,7 @@ import com.example.spring_boot.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,7 @@ public class ProductController {
         return "index";
     }
 
+    @Secured({"ROLE_ADMIN","ROLE_MANAGER"})
     @GetMapping({"/all_products", "/all_products/{pageId}"})
     public String getProductList(Model model, @PathVariable(required = false) Integer pageId) {
         if (pageId == null) {
@@ -36,6 +38,7 @@ public class ProductController {
         return "all_products";
     }
 
+    @Secured({"ROLE_ADMIN","ROLE_MANAGER"})
     @GetMapping("/add_product")
     public String getAddNewProductForm(Model model) {
         Product product = new Product();
@@ -43,6 +46,7 @@ public class ProductController {
         return "add_product";
     }
 
+    @Secured({"ROLE_ADMIN","ROLE_MANAGER"})
     @PostMapping("/add_product")
     public String addNewProduct(@ModelAttribute("product") Product product) {
         productService.save(product);

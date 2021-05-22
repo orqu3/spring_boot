@@ -1,4 +1,4 @@
-INSERT INTO `spring_boot_db`.`products` (`title`, `price`)
+INSERT INTO `spring_boot_db`.`products` (title, price)
 VALUES ('garlic', '115'),
        ('rice', '70'),
        ('corn', '70'),
@@ -20,10 +20,10 @@ VALUES ('garlic', '115'),
        ('onion', '30'),
        ('seasoning', '45');
 
-INSERT INTO `spring_boot_db`.`users` (`name`)
-VALUES ('John'),
-       ('Bob'),
-       ('Anna');
+INSERT INTO `spring_boot_db`.`users` (username, password, enabled)
+VALUES ('John', '$2y$04$fHy5/MduEYLuBkT7e1N0bugEAPgdqUQsuZoRyKo7bx/sxVabIHP3S', 1),
+       ('Bob', '$2y$04$fHy5/MduEYLuBkT7e1N0bugEAPgdqUQsuZoRyKo7bx/sxVabIHP3S', 1),
+       ('Anna', '$2y$04$fHy5/MduEYLuBkT7e1N0bugEAPgdqUQsuZoRyKo7bx/sxVabIHP3S', 1);
 
 INSERT INTO products_users (product_id, user_id)
 VALUES (1, 1),
@@ -32,3 +32,13 @@ VALUES (1, 1),
        (3, 2),
        (1, 3),
        (2, 3);
+
+INSERT INTO `spring_boot_db`.`roles` (id, name)
+VALUES (1, 'ROLE_ADMIN'),
+       (2, 'ROLE_MANAGER'),
+       (3, 'ROLE_USER');
+
+INSERT INTO `spring_boot_db`.`roles_users` (role_id, user_id)
+VALUES (1, 1),
+       (2, 2),
+       (3, 3);
