@@ -14,7 +14,7 @@ DROP TABLE IF EXISTS `spring_boot_db`.`users`;
 
 CREATE TABLE `spring_boot_db`.`users`
 (
-    `id`       BIGINT          NOT NULL AUTO_INCREMENT,
+    `id`       BIGINT       NOT NULL AUTO_INCREMENT,
     `username` VARCHAR(128) NULL,
     `password` VARCHAR(100) NOT NULL,
     `enabled`  TINYINT(1)   NOT NULL,
@@ -55,7 +55,7 @@ DROP TABLE IF EXISTS `spring_boot_db`.`roles_users`;
 CREATE TABLE `spring_boot_db`.`roles_users`
 (
     `role_id` BIGINT NOT NULL,
-    `user_id`    BIGINT NOT NULL,
+    `user_id` BIGINT NOT NULL,
     INDEX `fk_roleID_idx` (`role_id` ASC) VISIBLE,
     INDEX `fk_userID_idx` (`user_id` ASC) VISIBLE,
     CONSTRAINT `fk_roleID`
